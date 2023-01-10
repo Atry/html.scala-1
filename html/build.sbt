@@ -46,7 +46,11 @@ libraryDependencies ++= {
   if (VersionNumber(scalaVersion.value).numbers >= Seq(2L, 13L)) {
     Nil
   } else {
-    Seq(compilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full))
+    Seq(
+      compilerPlugin(
+        "org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full
+      )
+    )
   }
 }
 
