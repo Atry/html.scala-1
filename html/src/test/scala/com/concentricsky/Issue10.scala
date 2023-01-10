@@ -11,6 +11,8 @@ class Issue10 extends AnyFreeSpec with Matchers {
     @html
     val container = <div>{shouldCompile}</div>
     container.watch()
-    container.value.innerHTML should be("<div><span>Span InnerHTML</span></div>")
+    container.value.innerHTML should be(
+      "<div><span>Span InnerHTML</span></div>"
+    )
   }
 }
