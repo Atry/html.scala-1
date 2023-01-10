@@ -46,14 +46,18 @@ libraryDependencies ++= {
   if (VersionNumber(scalaVersion.value).numbers >= Seq(2L, 13L)) {
     Nil
   } else {
-    Seq(compilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full))
+    Seq(
+      compilerPlugin(
+        "org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full
+      )
+    )
   }
 }
 
 libraryDependencies += {
   import Ordering.Implicits._
   if (VersionNumber(scalaJSVersion).numbers >= Seq(1L)) {
-    "org.scala-js" %%% "scalajs-dom" % "2.0.0"
+    "org.scala-js" %%% "scalajs-dom" % "2.3.0"
   } else {
     "org.scala-js" %%% "scalajs-dom" % "1.2.0"
   }
