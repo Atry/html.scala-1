@@ -508,12 +508,6 @@ object html {
     type HTMLDetailsElement <: HTMLElement
 
     /** @todo Remove this type alias once scala-js-dom added the definition for this type */
-    type HTMLDialogElement <: HTMLElement
-
-    /** @todo Remove this type alias once scala-js-dom added the definition for this type */
-    type HTMLTemplateElement <: HTMLElement
-
-    /** @todo Remove this type alias once scala-js-dom added the definition for this type */
     type HTMLSlotElement <: HTMLElement
 
   }
