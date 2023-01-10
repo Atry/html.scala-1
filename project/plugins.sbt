@@ -1,6 +1,4 @@
-addSbtPlugin(
-  "com.thoughtworks.sbt-best-practice" % "sbt-best-practice" % "8.2.1"
-)
+addSbtPlugin("com.thoughtworks.sbt-best-practice" % "sbt-best-practice" % "8.2.1")
 
 addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "3.9.10")
 
@@ -16,7 +14,7 @@ addSbtPlugin("ch.epfl.scala" % "sbt-scalajs-bundler" % "0.20.0")
 
 libraryDependencies += "net.sourceforge.htmlunit" % "htmlunit" % "2.46.0"
 
-libraryDependencies += "io.circe" %% "circe-generic" % "0.14.3"
+libraryDependencies += "io.circe" %% "circe-generic" % "0.12.3"
 
 libraryDependencies += "com.softwaremill.sttp" %% "circe" % "1.7.2"
 
