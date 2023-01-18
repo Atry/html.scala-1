@@ -13,7 +13,9 @@ class DisabledElement extends AnyFreeSpec with Matchers {
     @html
     val container = <div>{shouldCompile}</div>
     container.watch()
-    container.value.innerHTML should be("""<button name="aasdf" autofocus=""></button>""")
+    container.value.innerHTML should be(
+      """<button name="aasdf" autofocus=""></button>"""
+    )
   }
 
   "disabled input should compile" in {

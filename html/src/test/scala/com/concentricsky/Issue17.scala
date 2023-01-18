@@ -17,11 +17,15 @@ class Issue17 extends AnyFreeSpec with Matchers {
     changing.value = None
     changingContainer.value.innerHTML should be("<div></div>")
 
-    @html val dataPrefixedChangingContainer = <div><div data:optional-attr={changing.bind}></div></div>
+    @html val dataPrefixedChangingContainer = <div><div data:optional-attr={
+      changing.bind
+    }></div></div>
     dataPrefixedChangingContainer.watch()
     dataPrefixedChangingContainer.value.innerHTML should be("<div></div>")
     changing.value = Some("optionalValue")
-    dataPrefixedChangingContainer.value.innerHTML should be("<div optional-attr=\"optionalValue\"></div>")
+    dataPrefixedChangingContainer.value.innerHTML should be(
+      "<div optional-attr=\"optionalValue\"></div>"
+    )
     changing.value = None
     dataPrefixedChangingContainer.value.innerHTML should be("<div></div>")
 

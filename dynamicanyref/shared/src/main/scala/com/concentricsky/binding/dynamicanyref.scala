@@ -4,7 +4,9 @@ import scala.language.dynamics
 import scala.language.experimental.macros
 import scala.reflect.macros.whitebox
 
-/** Contains helpers to enable [[scala.Dynamic]] for methods and fields defined in [[scala.AnyRef]] */
+/** Contains helpers to enable [[scala.Dynamic]] for methods and fields defined
+  * in [[scala.AnyRef]]
+  */
 object dynamicanyref {
 
   private[dynamicanyref] final class WhiteBoxMacros(val c: whitebox.Context) {
@@ -40,31 +42,49 @@ object dynamicanyref {
 
   trait AnyRefSelectDynamic[Field] extends Dynamic {
     def selectDynamic(fieldName: String): Field
-    @inline def getClass(implicit dummyImplicit: DummyImplicit = DummyImplicit.dummyImplicit) =
+    @inline def getClass(implicit
+        dummyImplicit: DummyImplicit = DummyImplicit.dummyImplicit
+    ) =
       selectDynamic("getClass")
     @inline def != = selectDynamic("!=")
-    @inline def ##(implicit dummyImplicit: DummyImplicit = DummyImplicit.dummyImplicit) = selectDynamic("##")
+    @inline def ##(implicit
+        dummyImplicit: DummyImplicit = DummyImplicit.dummyImplicit
+    ) = selectDynamic("##")
     @inline def + = selectDynamic("+")
     @inline def -> = selectDynamic("->")
     @inline def == = selectDynamic("==")
-    @inline def asInstanceOf(implicit dummyImplicit: DummyImplicit = DummyImplicit.dummyImplicit) =
+    @inline def asInstanceOf(implicit
+        dummyImplicit: DummyImplicit = DummyImplicit.dummyImplicit
+    ) =
       selectDynamic("asInstanceOf")
     @inline def ensuring = selectDynamic("ensuring")
     @inline def eq = selectDynamic("eq")
     @inline def equals = selectDynamic("equals")
     @inline def formatted = selectDynamic("formatted")
-    @inline def hashCode(implicit dummyImplicit: DummyImplicit = DummyImplicit.dummyImplicit) =
+    @inline def hashCode(implicit
+        dummyImplicit: DummyImplicit = DummyImplicit.dummyImplicit
+    ) =
       selectDynamic("hashCode")
-    @inline def isInstanceOf(implicit dummyImplicit: DummyImplicit = DummyImplicit.dummyImplicit) =
+    @inline def isInstanceOf(implicit
+        dummyImplicit: DummyImplicit = DummyImplicit.dummyImplicit
+    ) =
       selectDynamic("isInstanceOf")
     @inline def ne = selectDynamic("ne")
-    @inline def notify(implicit dummyImplicit: DummyImplicit = DummyImplicit.dummyImplicit) = selectDynamic("notify")
-    @inline def notifyAll(implicit dummyImplicit: DummyImplicit = DummyImplicit.dummyImplicit) =
+    @inline def notify(implicit
+        dummyImplicit: DummyImplicit = DummyImplicit.dummyImplicit
+    ) = selectDynamic("notify")
+    @inline def notifyAll(implicit
+        dummyImplicit: DummyImplicit = DummyImplicit.dummyImplicit
+    ) =
       selectDynamic("notifyAll")
     @inline def synchronized = selectDynamic("synchronized")
-    @inline def toString(implicit dummyImplicit: DummyImplicit = DummyImplicit.dummyImplicit) =
+    @inline def toString(implicit
+        dummyImplicit: DummyImplicit = DummyImplicit.dummyImplicit
+    ) =
       selectDynamic("toString")
-    @inline def wait(implicit dummyImplicit: DummyImplicit = DummyImplicit.dummyImplicit) = selectDynamic("wait")
+    @inline def wait(implicit
+        dummyImplicit: DummyImplicit = DummyImplicit.dummyImplicit
+    ) = selectDynamic("wait")
     @inline def → = selectDynamic("→")
   }
 
