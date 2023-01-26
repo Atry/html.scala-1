@@ -16,12 +16,12 @@ libraryDependencies += "com.thoughtworks.binding" %%% "binding" % "12.1.0+116-c2
 
 libraryDependencies += "net.sourceforge.htmlunit" % "neko-htmlunit" % "2.70.0"
 
-libraryDependencies += "com.thoughtworks.dsl" %%% "macros-reset" % "2.0.0-M2+339-69c389a4"
+libraryDependencies += "com.thoughtworks.dsl" %%% "macros-reset" % "2.0.0-M2+344-d5170d75"
 
-libraryDependencies += "com.thoughtworks.dsl" %%% "domains-continuation" % "2.0.0-M2+339-69c389a4"
+libraryDependencies += "com.thoughtworks.dsl" %%% "domains-continuation" % "2.0.0-M2+344-d5170d75"
 
-libraryDependencies += "com.thoughtworks.dsl" %%% "keywords-yield" % "2.0.0-M2+339-69c389a4"
+libraryDependencies += "com.thoughtworks.dsl" %%% "keywords-yield" % "2.0.0-M2+344-d5170d75"
 
-libraryDependencies += "com.thoughtworks.dsl" %%% "keywords-await" % "2.0.0-M2+339-69c389a4" % Test
+libraryDependencies += "com.thoughtworks.dsl" %%% "keywords-await" % "2.0.0-M2+344-d5170d75" % Test
 
 webpack / version := "5.75.0"
