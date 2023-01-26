@@ -91,12 +91,12 @@ import scala.util.chaining.given
   *
   *   val texts = Constants("foo", "bar")
   *   val node =
-  *     html"""<ol>${
-  *       for (text <- texts) yield html"<li>$text</li>".bind
-  *     }</li>"""
+  *     html"""<select>${
+  *       for (text <- texts) yield html"<option>$text</option>".bind
+  *     }</select>"""
   *   render(document.body, node)
   *   document.body.innerHTML should be(
-  *     "<ol><li>foo</li><li>bar</li></ol>"
+  *     "<select><option>foo</option><option>bar</option></select>"
   *   )
   * }}}
   */
