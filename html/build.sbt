@@ -12,7 +12,7 @@ libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "2.3.0"
 
 libraryDependencies += "com.thoughtworks.binding" %%% "bindable" % "2.1.3+81-8ac54bf7"
 
-libraryDependencies += "com.thoughtworks.binding" %%% "binding" % "12.1.0+119-a0371f70"
+libraryDependencies += "com.thoughtworks.binding" %%% "binding" % "12.2.0"
 
 libraryDependencies += "net.sourceforge.htmlunit" % "neko-htmlunit" % "2.70.0"
 
