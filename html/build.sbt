@@ -13,7 +13,7 @@ exampleSuperTypes += init"_root_.org.scalatest.Inside"
 libraryDependencies += "com.thoughtworks.binding" %%% "binding" % {
   import Ordering.Implicits._
   if (VersionNumber(scalaVersion.value).numbers >= Seq(2L, 13L)) {
-    "12.0.0-M1"
+    "12.2.0"
   } else {
     "11.9.0"
   }
@@ -22,7 +22,7 @@ libraryDependencies += "com.thoughtworks.binding" %%% "binding" % {
 libraryDependencies += "com.thoughtworks.binding" %%% "bindable" % {
   import Ordering.Implicits._
   if (VersionNumber(scalaVersion.value).numbers >= Seq(2L, 13L)) {
-    "2.0.0-M1"
+    "3.0.0"
   } else {
     "1.1.0"
   }
