@@ -10,7 +10,7 @@ libraryDependencies += "org.scalatest" %%% "scalatest" % "3.2.15" % Test
 
 libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "2.3.0"
 
-libraryDependencies += "com.thoughtworks.binding" %%% "bindable" % "2.2.0"
+libraryDependencies += "com.thoughtworks.binding" %%% "bindable" % "3.0.0"
 
 libraryDependencies += "com.thoughtworks.binding" %%% "binding" % "12.2.0"
 
