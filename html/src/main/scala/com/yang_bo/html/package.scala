@@ -431,6 +431,7 @@ package html {
     ): Expr[BindingSeq[org.scalajs.dom.Node]] =
       import scala.quoted.quotes.reflect.report
       import scala.quoted.quotes.reflect.asTerm
+      import scala.quoted.quotes.reflect.AppliedType
       import scala.quoted.quotes.reflect.TypeRepr
       import scala.quoted.quotes.reflect.Implicits
       import scala.quoted.quotes.reflect.ImplicitSearchFailure
@@ -446,7 +447,6 @@ package html {
                   val transformedTerm = transformNode(child).asTerm
                   transformedTerm.tpe.asType match
                     case '[from] =>
-                      
                       // TODO: Use summonInline instead?
                       Implicits.search(
                         TypeRepr
@@ -467,10 +467,18 @@ package html {
                             }: js.Function0[Binding[BindingSeq[org.scalajs.dom.Node]]]
                           }
                         case failure: ImplicitSearchFailure =>
-                          report.error(
-                            s"Require a HTML DOM expression, got ${TypeRepr.of[from].show}\n${failure.explanation}",
-                            transformedTerm.pos
-                          )
+                          TypeRepr.of[from] match
+                            case AppliedType(typed: TypeRepr, List(_, v)) if typed.typeSymbol.fullName == "com.thoughtworks.dsl.keywords.Typed$package$.Typed" =>
+                              report.error(
+                                s"Require a HTML DOM expression, got interpolation expression ${v.show}\n${failure.explanation}",
+                                transformedTerm.pos
+                              )
+                            case _ =>
+                              report.error(
+                                s"Require a HTML DOM expression, got ${TypeRepr.of[from].show}\n${failure.explanation}",
+                                transformedTerm.pos
+                              )
+                          end match
                           '{ ??? }
               ).toSeq
             )
