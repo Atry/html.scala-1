@@ -19,6 +19,12 @@ libraryDependencies += "com.thoughtworks.binding" %%% "binding" % {
   }
 }
 
+libraryDependencies ++= PartialFunction.condOpt(
+  VersionNumber(scalaVersion.value).matchesSemVer(SemanticSelector(">2.13.7"))
+) { case true =>
+  "com.thoughtworks.binding" %% "xmlextractor" % "12.1.2"
+}
+
 libraryDependencies += "com.thoughtworks.binding" %%% "bindable" % {
   import Ordering.Implicits._
   if (VersionNumber(scalaVersion.value).numbers >= Seq(2L, 13L)) {
