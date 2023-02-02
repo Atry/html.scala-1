@@ -19,9 +19,10 @@ libraryDependencies += "com.thoughtworks.binding" %%% "binding" % {
   }
 }
 
-libraryDependencies ++= PartialFunction.condOpt(scalaBinaryVersion.value) {
-  case "2.13" =>
-    "com.thoughtworks.binding" %% "xmlextractor" % "12.1.2"
+libraryDependencies ++= PartialFunction.condOpt(
+  VersionNumber(scalaVersion.value).matchesSemVer(SemanticSelector(">2.13.7"))
+) { case true =>
+  "com.thoughtworks.binding" %% "xmlextractor" % "12.1.2"
 }
 
 libraryDependencies += "com.thoughtworks.binding" %%% "bindable" % {
