@@ -1046,7 +1046,7 @@ object html {
   * }}}
   *
   * @example
-  *   Dynamc attributes
+  *   Dynamic attributes
   * {{{
   * @html
   * val myBr = <br data:toString="+&copy;" data:applyDynamic="value"/>
