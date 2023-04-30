@@ -65,7 +65,7 @@ import scala.util.chaining.given
   * @example
   *   An html interpolation that includes multiple single root nodes should be a
   *   `BindingSeq[Node]`.
-  * {{{
+  *   {{{
   *   import com.yang_bo.html.*
   *   import com.thoughtworks.binding.Binding.BindingSeq
   *   import org.scalajs.dom.Node
@@ -78,12 +78,12 @@ import scala.util.chaining.given
   *   document.body.innerHTML should be(
   *     """<span>1&nbsp;foo2bar3</span><textarea class="my-class" id="my-id">baz</textarea>"""
   *   )
-  * }}}
+  *   }}}
   * @example
   *   The variable in an html interpolation could be a
   *   [[com.thoughtworks.binding.Binding.BindingSeq]] of
   *   [[org.scalajs.dom.Node]].
-  * {{{
+  *   {{{
   *   import com.yang_bo.html.*
   *   import com.thoughtworks.binding.Binding.Constants
   *   import org.scalajs.dom.Node
@@ -98,7 +98,7 @@ import scala.util.chaining.given
   *   document.body.innerHTML should be(
   *     "<select><option>foo</option><option>bar</option></select>"
   *   )
-  * }}}
+  *   }}}
   */
 package object html {
   // For document purpose only
@@ -196,8 +196,8 @@ package html {
             case failure: ImplicitSearchFailure =>
               report.error(
                 s"Cannot produce a bindable expression for the property ${propertySymbol.name}. Expect ${Type
-                  .show[propertyType]}, actual ${Type.show[V]}\nCannot find an instance of ${Type
-                  .show[AttributeAdaptorType]}\n${failure.explanation} ",
+                    .show[propertyType]}, actual ${Type.show[V]}\nCannot find an instance of ${Type
+                    .show[AttributeAdaptorType]}\n${failure.explanation} ",
                 attributeValueExpr.asTerm.pos
               )
               '{ ??? }
@@ -299,8 +299,7 @@ package html {
           case null =>
             Nil
           case attributeBindings =>
-            for
-              case (
+            for case (
                 qName: QName,
                 argExprs(anyAttributeValueExpr)
               ) <- attributeBindings
@@ -455,27 +454,31 @@ package html {
                           ]
                       ) match
                         case success: ImplicitSearchSuccess =>
-                          '{ 
+                          '{
                             { () =>
                               ${
                                 success.tree
-                                  .asExprOf[BindingSeqNodeAdaptor[from]
-                                  ]
+                                  .asExprOf[BindingSeqNodeAdaptor[from]]
                               }(${
                                 transformedTerm.asExprOf[from]
                               })
-                            }: js.Function0[Binding[BindingSeq[org.scalajs.dom.Node]]]
+                            }: js.Function0[Binding[
+                              BindingSeq[org.scalajs.dom.Node]
+                            ]]
                           }
                         case failure: ImplicitSearchFailure =>
                           TypeRepr.of[from] match
-                            case AppliedType(typed: TypeRepr, List(_, v)) if typed.typeSymbol.fullName == "com.thoughtworks.dsl.keywords.Typed$package$.Typed" =>
+                            case AppliedType(typed: TypeRepr, List(_, v))
+                                if typed.typeSymbol.fullName == "com.thoughtworks.dsl.keywords.Typed$package$.Typed" =>
                               report.error(
                                 s"Require a HTML DOM expression, got interpolation expression ${v.show}\n${failure.explanation}",
                                 transformedTerm.pos
                               )
                             case _ =>
                               report.error(
-                                s"Require a HTML DOM expression, got ${TypeRepr.of[from].show}\n${failure.explanation}",
+                                s"Require a HTML DOM expression, got ${TypeRepr
+                                    .of[from]
+                                    .show}\n${failure.explanation}",
                                 transformedTerm.pos
                               )
                           end match
@@ -607,7 +610,7 @@ package html {
   ): Binding[Unit] = new NodeSeqMountPoint(parent, childrenBinding)
 
   private[html] opaque type BindingSeqNodeAdaptor[
-      From,
+      From
   ] <: From => Binding[BindingSeq[Node]] =
     From => Binding[BindingSeq[Node]]
   private[html] object BindingSeqNodeAdaptor:
@@ -668,9 +671,8 @@ package html {
 
     given [FromFunction, A, R](using
         bindable: Bindable.Lt[FromFunction, A => R]
-    ): AttributeAdaptor[FromFunction, Binding[js.Function1[A, R]]] = {
-      from =>
-        bindable.toBinding(from).map(identity)
+    ): AttributeAdaptor[FromFunction, Binding[js.Function1[A, R]]] = { from =>
+      bindable.toBinding(from).map(identity)
     }
 
   end AttributeAdaptor
