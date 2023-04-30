@@ -504,11 +504,17 @@ package html {
       val Varargs(argExprs) = args: @unchecked
       val '{ StringContext($partsExpr: _*) } = stringContext: @unchecked
       val Expr(partList) = partsExpr: @unchecked
-      val parts = partList.toIndexedSeq
-      val fragment = InterpolationParser.parseHtmlParts(
-        parts,
-        { (message, arg) => report.error(message, argExprs(arg).asTerm.pos) }
-      )
+
+      // Wrap HTMLs in a template element, otherwise htmlunit cannot parse <tr> as a root element
+      val parts =
+        partList.toIndexedSeq.updated(0, s"<template>${partList.head}")
+      val rootNodes = InterpolationParser
+        .parseHtmlParts(
+          parts,
+          { (message, arg) => report.error(message, argExprs(arg).asTerm.pos) }
+        )
+        .getFirstChild()
+        .getChildNodes()
 
       // report.info(
       //   "arg:" + fragment.getFirstChild.getChildNodes
@@ -522,7 +528,6 @@ package html {
       //     .createLSSerializer()
       //     .writeToString(fragment)
       // )
-      val rootNodes = fragment.getChildNodes
       if rootNodes.getLength == 1 then
         transformNode(rootNodes.item(0))(using argExprs.toIndexedSeq)
       else transformNodeList(rootNodes)(using argExprs.toIndexedSeq)
