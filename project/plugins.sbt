@@ -20,7 +20,7 @@ libraryDependencies += "com.softwaremill.sttp" %% "circe" % "1.7.2"
 
 addSbtPlugin("org.portable-scala" % "sbt-scalajs-crossproject" % "1.2.0")
 
-addSbtPlugin("org.scala-js" % "sbt-scalajs" % "1.13.0")
+addSbtPlugin("org.scala-js" % "sbt-scalajs" % "1.13.1")
 
 addSbtPlugin("com.thoughtworks.sbt-api-mappings" % "sbt-api-mappings" % "3.0.2")
 
